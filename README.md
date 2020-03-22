@@ -1,2 +1,2 @@
 # neural-network
-Realise simole neural network.
+Realise simple neural network.
