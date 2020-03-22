@@ -19,7 +19,7 @@ namespace NeuralNetwork
         public List<Layer> Layers { get; }
 
 
-        private void CreateOutputLayer()
+        private void CreateInputLayer()
         {
             var inputNeurons = new List<Neuron>();
 
@@ -51,7 +51,7 @@ namespace NeuralNetwork
             }
         }
 
-        private void CreateInputLayer()
+        private void CreateOutputLayer()
         {
             var outputNeurons = new List<Neuron>();
             var lastLayer = Layers.Last();
@@ -95,7 +95,7 @@ namespace NeuralNetwork
 
         private void FeedForwardAllLayersAfterInput()
         {
-            for (int i = 0; i < Layers.Count; i++)
+            for (int i = 1; i < Layers.Count; i++)
             {
                 var layer = Layers[i];
                 var previousLayerSignals = Layers[i - 1].GetSignals();

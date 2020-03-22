@@ -29,7 +29,11 @@ namespace NeuralNetwork
                 sum += inputs[i] * Weights[i];
             }
 
-            Output = Sigmoid(sum);
+            if (Type != NeuronType.Input)
+                Output = Sigmoid(sum);
+            else
+                Output = sum;
+
             return Output;
         }
 
@@ -37,7 +41,7 @@ namespace NeuralNetwork
         private double Sigmoid(double x) => 1.0 / (1.0 + Math.Exp(-x));
 
         // TODO: удалить после добавления возможности обучения сети.
-        private void SetWeights(params double[] weights)
+        public void SetWeights(params double[] weights)
         {
             for (int i = 0; i < weights.Length; i++)
             {
