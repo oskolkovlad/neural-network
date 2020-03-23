@@ -9,10 +9,12 @@ namespace NeuralNetwork
             // TODO: проверить нейроны на соответствие типу.
 
             Neurons = neurons;
+            Type = type;
         }
 
         public List<Neuron> Neurons { get; }
-        public int Count => Neurons?.Count ?? 0;
+        public NeuronType Type { get; }
+        public int NeuronsCount => Neurons?.Count ?? 0;
 
 
         public List<double> GetSignals()
@@ -26,5 +28,8 @@ namespace NeuralNetwork
 
             return result;
         }
+
+
+        public override string ToString() => Type.ToString();
     }
 }

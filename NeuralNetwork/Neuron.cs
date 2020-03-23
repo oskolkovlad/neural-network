@@ -9,23 +9,41 @@ namespace NeuralNetwork
         {
             Type = type;
             Weights = new List<double>();
+            Inputs = new List<double>();
 
+            InitWeightsRandomValues(inputCount);
+        }
+
+        private void InitWeightsRandomValues(int inputCount)
+        {
+            var rnd = new Random();
             for (var i = 0; i < inputCount; i++)
             {
-                Weights.Add(1);
+                if (Type == NeuronType.Input)
+                {
+                    Weights.Add(1);
+                }
+                else
+                {
+                    Weights.Add(rnd.NextDouble());
+                }
+                
+                Inputs.Add(0);
             }
         }
 
         public NeuronType Type { get; }
         public List<double> Weights { get; }
+        public List<double> Inputs { get; }
         public double Output { get; private set; }
+        public double Delta { get; private set; }
 
         public double FeedForward(List<double> inputs)
         {
             var sum = 0.0;
-
             for (int i = 0; i < inputs.Count; i++)
             {
+                Inputs[i] = inputs[i];
                 sum += inputs[i] * Weights[i];
             }
 
@@ -39,13 +57,24 @@ namespace NeuralNetwork
 
         // Сигмоида: https://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D0%B3%D0%BC%D0%BE%D0%B8%D0%B4%D0%B0
         private double Sigmoid(double x) => 1.0 / (1.0 + Math.Exp(-x));
+        private double SigmoidDx(double x) => Sigmoid(x) / (1 - Sigmoid(x));
 
-        // TODO: удалить после добавления возможности обучения сети.
-        public void SetWeights(params double[] weights)
+        public void Learn(double error, double learningRate)
         {
-            for (int i = 0; i < weights.Length; i++)
+            if (Type == NeuronType.Input)
             {
-                Weights[i] = weights[i];
+                return;
+            }
+
+            Delta = error * SigmoidDx(Output);
+
+            for (int i = 0; i < Weights.Count; i++)
+            {
+                var weight = Weights[i];
+                var input  = Inputs[i];
+
+                var newWeight = weight - input * Delta * learningRate;
+                Weights[i] = newWeight;
             }
         }
 
