@@ -68,10 +68,10 @@ namespace NeuralNetwork
         }
 
 
-        public Neuron FeedForward(params double[] inputSignals)
+        public Neuron Predict(params double[] inputSignals)
         {
             SendSignalsToInputNeurons(inputSignals);
-            FeedForwardAllLayersAfterInput();
+            PredictAllLayersAfterInput();
 
             if (Topology.OutputCount == 1)
             {
@@ -94,7 +94,7 @@ namespace NeuralNetwork
             }
         }
 
-        private void FeedForwardAllLayersAfterInput()
+        private void PredictAllLayersAfterInput()
         {
             for (int i = 1; i < Layers.Count; i++)
             {
@@ -145,7 +145,7 @@ namespace NeuralNetwork
 
         private double BackPropagation(double expected, params double[] inputs)
         {
-            var actual = FeedForward(inputs).Output;
+            var actual = Predict(inputs).Output;
             var errorOutput = actual - expected;
 
             foreach (var neuron in Layers.Last().Neurons)
