@@ -1,4 +1,4 @@
-﻿namespace NeuralNetwork
+﻿namespace NeuralNetworkLibrary
 {
     public enum NeuronType
     {

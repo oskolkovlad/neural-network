@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{56CB91EC-E966-4612-B8EC-DE855296AC52}</ProjectGuid>
+    <ProjectGuid>{1FA58844-984A-46FD-AA24-38D9927924CE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>NeuralNetworkTests</RootNamespace>
-    <AssemblyName>NeuralNetworkTests</AssemblyName>
+    <RootNamespace>NeuralNetworkLibraryTests</RootNamespace>
+    <AssemblyName>NeuralNetworkLibraryTests</AssemblyName>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -65,11 +65,12 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NeuralNetwork\NeuralNetwork.csproj">
-      <Project>{14F55752-37E2-45F9-AB88-EA30A2D1B5BC}</Project>
-      <Name>NeuralNetwork</Name>
+    <ProjectReference Include="..\NeuralNetworkLibrary\NeuralNetworkLibrary.csproj">
+      <Project>{DEE1082C-7952-4CDA-B108-25713B3F78BA}</Project>
+      <Name>NeuralNetworkLibrary</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="images\Parasitized.png" />
     <Content Include="images\Parasitized_1.png" />

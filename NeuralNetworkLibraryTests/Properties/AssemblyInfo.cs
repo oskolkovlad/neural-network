@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью указанного ниже 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // общие сведения об этой сборке.
-[assembly: AssemblyTitle("NeuralNetworkTests")]
+[assembly: AssemblyTitle("NeuralNetworkLibraryTests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("NeuralNetworkTests")]
+[assembly: AssemblyProduct("NeuralNetworkLibraryTests")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("56cb91ec-e966-4612-b8ec-de855296ac52")]
+[assembly: Guid("1fa58844-984a-46fd-aa24-38d9927924ce")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

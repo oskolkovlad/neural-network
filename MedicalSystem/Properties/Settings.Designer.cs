@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace NeuralNetwork.Properties
+namespace MedicalSystem.Properties
 {
 
 

@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace NeuralNetwork
+namespace MedicalSystem
 {
     static class Program
     {
+        public static SystemController SystemController { get; private set; }
+
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
@@ -16,7 +18,9 @@ namespace NeuralNetwork
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new MainForm());
+
+            SystemController = new SystemController();
         }
     }
 }

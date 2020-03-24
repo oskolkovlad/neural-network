@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace NeuralNetwork.Tests
+namespace NeuralNetworkLibrary.Tests
 {
     [TestClass()]
     public class NeuralNetworkTests
     {
         [TestMethod()]
-        public void FeedForwardTest()
+        public void PredictTest()
         {
             // Arrange
             var topology = new Topology(4, 1, 0.1, 2);
@@ -62,10 +62,11 @@ namespace NeuralNetwork.Tests
             for (int i = 0; i < results.Count; i++)
             {
                 var expected = Math.Round(outputs[i], 3);
-                var actual   = Math.Round(results[i], 3);
+                var actual = Math.Round(results[i], 3);
                 Assert.AreEqual(expected, actual);
             }
         }
+
 
         [TestMethod()]
         public void DataSetTest()
@@ -75,11 +76,11 @@ namespace NeuralNetwork.Tests
             var inputs = new List<double[]>();
 
 
-            using(var sread = new StreamReader(@"Q:\Projects\Learn\neural-network\NeuralNetworkTests\heart.csv"))
+            using (var sread = new StreamReader(@"Q:\Projects\Learn\neural-network\NeuralNetworkLibraryTests\heart.csv"))
             {
                 var header = sread.ReadLine();
                 var line = "";
-                while(!sread.EndOfStream)
+                while (!sread.EndOfStream)
                 {
                     line = sread.ReadLine();
                     var values = line.Split(',').Select(v => Convert.ToDouble(v.Replace('.', ','))).ToList();
@@ -134,12 +135,12 @@ namespace NeuralNetwork.Tests
             var uninfectedPath = @"Q:\Projects\Learn\cell_images\Uninfected\";
 
             var converter = new PictureConverter();
-            var testImageInputParasitized = converter.Convert(@"Q:\Projects\Learn\neural-network\NeuralNetworkTests\images\Parasitized.png");
-            var testImageInputUninfected = converter.Convert(@"Q:\Projects\Learn\neural-network\NeuralNetworkTests\images\Uninfected.png");
+            var testImageInputParasitized = converter.Convert(@"Q:\Projects\Learn\neural-network\NeuralNetworkLibraryTests\images\Parasitized.png");
+            var testImageInputUninfected = converter.Convert(@"Q:\Projects\Learn\neural-network\NeuralNetworkLibraryTests\images\Uninfected.png");
 
-            var topology = new Topology(testImageInputParasitized.Count, 1, 0.1, testImageInputParasitized.Count / 2);
+            var topology = new Topology(testImageInputParasitized.Length, 1, 0.1, testImageInputParasitized.Length / 2);
             var neuralNetwork = new NeuralNetwork(topology);
-            
+
             double[,] parasitizedInputs = GetData(parasitizedPath, converter, testImageInputParasitized, size);
             neuralNetwork.Learn(new double[] { 1 }, parasitizedInputs, 1);
 
@@ -154,15 +155,15 @@ namespace NeuralNetwork.Tests
 
         }
 
-        private double[,] GetData(string path, PictureConverter converter, List<int> testImageInput, int size)
+        private double[,] GetData(string path, PictureConverter converter, double[] testImageInput, int size)
         {
             var images = Directory.GetFiles(path);
-            var inputs = new double[size, testImageInput.Count];
+            var inputs = new double[size, testImageInput.Length];
 
             for (int i = 0; i < size; i++)
             {
                 var image = converter.Convert(images[i]);
-                for (int j = 0; j < image.Count; j++)
+                for (int j = 0; j < image.Length; j++)
                 {
                     inputs[i, j] = image[j];
                 }
